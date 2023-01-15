@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kolokvium Zadaca 1</title>
+    <link rel="stylesheet" href="./jquery-ui-1.13.2.custom/jquery-ui.min.css">
+    
+
+    <style>
+        .book_center{
+            box-sizing: border-box;
+            padding: 16px;
+            margin: 0;
+            display: block;
+        }
+        .user-int{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px 0 16px 0;
+        }
+        .user-int p{
+            margin: auto 1rem auto 0;
+        }
+        .user-int input{
+            width: 250px;
+            padding: 10px;
+        }
+        #btnAddBook{
+            display: block;
+            border: 2px solid black;
+            border-radius: 10px;
+            width: 150px;
+            padding: 5px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        #btnAddBook:hover{
+            scale: 1.05;
+        }
+        #searched_book ul{
+            display: inline-block;
+            vertical-align: top;
+            background-color: aliceblue;
+            margin: 10px auto;
+        }
+        #searched_book #addedBooks{
+            display: inline-block;
+            width: 350px;
+            padding: 16px;
+        }
+        #searched_book #bookView{
+            display: inline-block;
+            width: 250px;
+            padding: 16px;
+        }
+        #searched_book h2{
+            text-decoration: underline;
+            margin: 10px;
+
+        }
+        #searched_book li{
+            list-style-type: decimal;
+            margin: 10px;
+            padding: 5px;
+
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="book_center">
+        <h1>Search and add book your wish</h1>
+        <div class="user-int">
+            <p>Enter book ISBN( 10-13 characters)</p>
+            <input type="text" id="book_isbn" placeholder="Input ISBN of book here" title="ISBN of book need to at least 10 to 13 characters in order to get and add book to list">
+       </div>
+       <button id="btnAddBook">Add Book</button>
+
+       <div id="searched_book">
+            <h2>List of books that you add</h2>
+            <ul id="addedBooks">
+            </ul>
+            <ul id="bookView">
+                <li><span id="bookISBN"></span></li>
+                <article id="bookImage">
+                    <img src="" alt="book cover page image" id="bookCoverImg" style="max-width: 100%">
+                </article>
+                <li><span id="bookTitle"></span></li>
+                <li><a id="bookLink" href="">Link</a></li>
+                <li><span id="bookPublishers"></span></li>
+            </ul>
+       </div>
+    </div>
+
+    <section>
+        <a href="www.facebook.com"><img src="images/facebook.png" height="40" width="40"/></a>
+        <a href="www.reddit.com"><img src="images/reddit.png" height="40" width="40"/></a>
+        <a href="www.twitter.com"><img src="images/twitter.png" height="40" width="40"/></a>
+        <a href="www.linkedin.com"><img src="images/linkedin.png" height="40" width="40"/></a>
+    </section>
+
+    <script src="jquery-3.6.3.min.js"></script>
+    <script src="./jquery-ui-1.13.2.custom/jquery-ui.min.js"></script>
+    <script>
+        console.log("Work")
+        $(document).tooltip();
+        $(document).ready(function(){
+
+            var keyData;
+            var getData;
+            var infoUrl;
+            var img;
+            var title;
+            var bookPublishers;
+
+            
+            function searchAddBook(keyData){
+                $.ajax({
+                    url: "https://openlibrary.org/api/books?bibkeys=ISBN:" + keyData + "&jscmd=details&callback=mycallback",
+                    dataType: "jsonp",
+                    success: function(data) {
+                        
+                        getData = data["ISBN:" + keyData];
+                        infoUrl = getData.info_url;
+                        img = getData.thumbnail_url; 
+                        title = getData.details.title;
+                        bookPublishers = getData.details.publishers;
+
+                        console.log("Title of book is: "+title);
+
+                        let element = $(`<li>${title}</li>`);
+                        element.attr("bookISBN", keyData);
+                        element.attr("bookCoverImg", img);
+                        element.attr("bookTitle",title);
+                        element.attr("bookLink",infoUrl);
+                        element.attr("bookPublishers", bookPublishers);
+
+                        element.appendTo("#addedBooks");
+                    }
+                })
+            }
+            
+            $("#btnAddBook").click(()=>{
+                keyData = $("#book_isbn").val();
+                console.log(keyData)
+                searchAddBook(keyData)
+            });
+
+            $(document).on("click","#searched_book li", ()=>{
+                $("#bookISBN").html(keyData);
+                $("#bookCoverImg").attr("src", img);
+                $("#bookTitle").html(title);
+                $("#bookLink").attr("href", infoUrl);
+                $("#bookPublishers").html(bookPublishers);
+                
+            })
+
+            function clear(){
+                getData = ""
+                infoUrl = ""
+                img = ""
+                title = ""
+                bookPublishers = ""
+            }
+           
+
+        })
+
+
+        /// TEST 9781619634466
+        /// TEST 9781619633612
+    </script>
+</body> 
+</html>
