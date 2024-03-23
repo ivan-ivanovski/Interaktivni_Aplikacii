@@ -1,3 +1,2 @@
-#Ovaa e primer za development granka
-Grankata development kje se koristi za dodavanje na nov feature vo proekti
-
+#Interaktivni Aplikacii
+Zadaci po predmetite sabloni za dizaj na koristnicki intefejs( Interaktivni Aplikacii )
