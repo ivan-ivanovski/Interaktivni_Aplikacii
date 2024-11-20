@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="#">
+    <title>Zadaca 1</title>
+    <script>
+        "use strict";
+        window.addEventListener("load", (e) => {
+            brisiDupli([2, 3, 10, 2, 4, 5, 3, 10]);
+            brisiDupli([10, 10, 10, 10]);
+            brisiDupli(['a', 'b', 'a', 'vv', 'ab', 'b']);
+            brisiDupli([])
+
+        })
+        function brisiDupli(array) {
+            let brojacDupli = 0;
+            let unikatni = [];
+            console.log(array);
+            if (array.length <= 0) {
+                console.log("Prazna niza");
+                return;
+            }
+            array.forEach(element => {
+                if (!unikatni.includes(element))
+                    unikatni.push(element);
+            });
+            console.log(unikatni);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

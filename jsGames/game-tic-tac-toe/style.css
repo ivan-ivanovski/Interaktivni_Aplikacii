@@ -1,0 +1,102 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "Arial", sans-serif;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	overflow: hidden;
+	display: block;
+}
+
+.header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	width: 100vw;
+	height: auto;
+	background: #ccc;
+	margin: 0 auto;
+}
+
+.header div {
+	width: 610px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: space-between;
+	margin: 1rem auto;
+}
+
+.header div h2 {
+	color: #000;
+	font-weight: 700;
+}
+
+h1 {
+	font-size: 3rem;
+	font-weight: bold;
+}
+
+.board {
+	width: 640px;
+	height: 640px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+	align-content: center;
+	margin: 0 auto;
+}
+
+.tile {
+	width: 200px;
+	height: 200px;
+	border: 3px solid #000;
+	border-radius: .5rem;
+	margin: .1rem .2rem;
+	background: #eee;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: 6rem;
+	font-weight: 900;
+}
+
+.tile:hover {
+	background: #ccc;
+
+}
+
+
+
+#winner {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+	font-size: 2rem;
+	background-color: orange;
+}
+
+button {
+	font-size: 2rem;
+	background-color: #000;
+	border: none;
+	border-radius: 1rem;
+	color: #ddd;
+	padding: .5rem .6rem;
+	cursor: pointer;
+}
+
+.hidden {
+	display: none !important;
+}

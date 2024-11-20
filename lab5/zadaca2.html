@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Погоди број</title>
+    <script>
+        function getRandom(){
+            let num = Math.floor(Math.random()*10000)
+            if(num <= 1000){
+                num = num+1000;
+            }
+            return num;
+        }
+
+        function validateInput(number){
+            return number>=1000 && number<=10000;
+        }
+        function numberToNumberArray(num){
+            return Array.from(String(num),Number);
+        }
+
+        function pogodeniCifri (inputNum, toGuess){
+            let digitsInputNumber = numberToNumberArray(inputNum);
+            let digitsGuessNumber = numberToNumberArray(toGuess);
+            let digitInNumber = 0;
+            for(let i=0;i<4;i++){
+                if(digitsInputNumber[i] === digitsGuessNumber[i]){
+                    digitInNumber += 1;
+                }
+            }
+            return digitInNumber;
+        }
+
+        function Start(){
+            let obidi = document.getElementById("obid").innerText = "10";
+
+            let btnPogodi = document.getElementById("pogodi");
+
+            let guessNumber = getRandom();
+
+            let pogodok = 1;
+
+            btnPogodi.addEventListener("click",()=>{
+                console.log(guessNumber)
+
+                let num = parseInt(document.getElementById("guess").value);
+
+                if(validateInput(num)) {
+                    let sameDigits = pogodeniCifri(num, guessNumber);
+
+                    if (sameDigits === 4) {
+                        document.getElementById("rezultat").innerHTML += "<p>Го погодивте бројот</p>";
+                        pogodok++;
+                    }
+
+                    if (pogodok < 10) {
+                        document.getElementById("rezultat").innerHTML += "<p>Има " + sameDigits + ". Внесен број е: " + num+"</p>";
+                        pogodok++;
+                    } else {
+                        document.getElementById("rezultat").innerHTML += "<p>Не го погодивте бројот. Бројот e " + guessNumber+"</p>";
+                    }
+                    update();
+                }
+                else{
+                    alert("Треба да внесете број помеѓу 1000 и 10000");
+                }
+            })
+        }
+        function update(){
+            let preostanati = document.getElementById("obid");
+            console.log(preostanati.innerText)
+            preostanati = parseInt(preostanati.innerText) - 1;
+            document.getElementById("obid").innerHTML = preostanati.toString();
+        }
+        window.addEventListener("load",()=>{
+
+            Start();
+        })
+
+    </script>
+</head>
+<body>
+    <div>
+        <div style="text-align:right; float:left">
+            <p id="obid">Обиди 0</p>
+            <div><label for="guess">Погодок:</label><input id="guess" style="width:150px"/></div>
+            <br>
+            <button id="pogodi">Погоди</button>
+            <button id="reset">Од почеток</button>
+        </div>
+    </div>
+    <br/>
+    <div id="rezultat" style="clear: both">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="#">
+    <title>Zadaca 3</title>
+    <script>
+        "use strict";
+        class Cilindar {
+            constructor(radius, visina) {
+                if (parseFloat(radius) > 0 && parseFloat(visina) >= 0) {
+                    this.radius = radius;
+                    this.visina = visina;
+                }
+                else {
+                    return;
+                }
+            }
+            presmetajVolumen() {
+                return (Math.PI.toFixed(5) * Math.pow(this.radius, 2) * this.visina).toFixed(3);
+            }
+            pecati() {
+                if (this.presmetajVolumen() >= 0) {
+                    console.log("Volumen na cilindar so radius " + this.radius + "cm i visina " + this.visina + "cm iznesuva " + this.presmetajVolumen());
+                }
+                else {
+                    console.log("Ne validni vrednosti za radius i visina");
+                }
+            }
+        }
+        window.addEventListener("load", (e) => {
+            let cilindri = [
+                new Cilindar(5.0, 10.5),
+                new Cilindar(10, 15),
+                new Cilindar(2, 3),
+                new Cilindar(-2, -3),
+                new Cilindar('a', 'b')
+            ];
+            cilindri.forEach(cilindar => {
+                cilindar.pecati()
+            })
+        })
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

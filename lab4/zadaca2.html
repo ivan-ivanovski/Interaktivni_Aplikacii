@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zadaca 2</title>
+</head>
+<body>
+    <h1>Приказ на опции со check box или radio button</h1>
+    <div class="form">
+        <div>
+            <label for="items">Items: </label>
+            <input type="text" id="items" >
+        </div>
+        <label for="itemsType">Type: </label>
+        <select id="itemsType">
+            <option>Radio Button</option>
+            <option>Check box</option>
+        </select>
+        <button id="btnShowItems">Прикажи</button>
+    </div>
+    <div class="result">
+
+    </div>
+    <script type="text/javascript">
+        let showItemsBtn = document.querySelector("#btnShowItems");
+
+        let items=[];
+        function create(arrItems, type){
+            arrItems.forEach(item => {
+                let input = document.createElement("input");
+                input.type = type;
+                let label = document.createElement("label");
+                label.innerHTML = item;
+                document.querySelector(".result").innerHTML += input.outerHTML + "" + label.outerHTML
+            })
+        }
+        showItemsBtn.addEventListener("click", (e)=>{
+            e.preventDefault();
+
+            let types = document.querySelector("#itemsType");
+            let itemTypeSelected = types.options[types.selectedIndex].index;
+
+            let itemsInput = document.querySelector("#items").value;
+
+            itemsInput = itemsInput.replaceAll(/\s/g,'');// site prazni mesta odeleni so zaprika gi izbegnuva i pravi string so , bez prazni mesta one, two, three -> one,two,three and etc
+
+            if(itemsInput !== ""){
+                console.log(itemsInput)
+                items = itemsInput.split(',');
+                console.log(items)
+                if(itemTypeSelected === 0){
+                    //radio button
+                    create(items, "radio");
+                }
+                if(itemTypeSelected === 1){
+                    create(items, "checkbox");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

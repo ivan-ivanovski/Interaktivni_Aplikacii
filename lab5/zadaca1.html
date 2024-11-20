@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadaca 1 Калкулатор</title>
+    <script>
+        "use strict";
+        //Resenie na zadaca koristejki prototip klasa Kalkulator
+        class Kalkulator {
+            constructor(a, b) {
+                this.a = a;
+                this.b = b;
+            }
+            get_a() {
+                return this.a;
+            }
+            set_a(a) {
+                this.a = a;
+            }
+            get_b() {
+                return this.b;
+            }
+            set_b(b) {
+                this.b = b;
+            }
+            zbir(a, b) {
+                return a + b;
+            }
+            razlika(a, b) {
+                return a - b;
+            }
+            proizvod(a, b) {
+                return a * b;
+            }
+            kolicnik(a, b) {
+                if (this.a === 0 || this.b === 0) return console.log("Ne se deli so 0");
+                else return a / b;
+            }
+            sin_a(a) {
+                return Math.sin(a);
+            }
+            cos_a(b) {
+                return Math.cos(b);
+            }
+            tan_a(a) {
+                return Math.tan(a);
+            }
+            cel_a(a) {
+                return Math.ceil(a);
+            }
+            stepen_aB(a, b) {
+                return Math.pow(a, b);
+            }
+            koren_a(a) {
+                return Math.sqrt(a);
+            }
+        }
+
+
+
+        //pri load na prozorec 
+        window.addEventListener("load", (e) => {
+
+            let btnPresmetaj = document.querySelector("#presmetaj");
+            btnPresmetaj.addEventListener('click', presmetaj);
+        })
+
+
+        //funkcija koja se povikuva pri nastan klik na dugme presmetaj
+        function presmetaj() {
+            let a = document.querySelector("#a").value;
+            let b = document.querySelector("#b").value;
+            let k1 = new Kalkulator(Number(a), Number(b));
+
+            //console.log(k1.get_a());
+            //console.log(k1.get_b());
+
+            let operantPlus = document.querySelector("#plus");
+            let operantMinus = document.querySelector("#minus");
+            let operantMnozenje = document.querySelector("#mnoz");
+            let operantDelenje = document.querySelector("#del");
+            let sinus = document.querySelector("#sin");
+            let cosin = document.querySelector("#cos");
+            let tan = document.querySelector("#tg");
+            let cel = document.querySelector("#cel");
+            let stepen = document.querySelector("#stepen");
+            let koren = document.querySelector("#koren");
+
+            if (operantPlus.checked) document.querySelector("#rezultat").innerHTML = k1.zbir(k1.get_a(), k1.get_b());
+            if (operantMinus.checked) document.querySelector("#rezultat").innerHTML = k1.razlika(k1.get_a(), k1.get_b());
+            if (operantMnozenje.checked) document.querySelector("#rezultat").innerHTML = k1.proizvod(k1.get_a(), k1.get_b());
+            if (operantDelenje.checked) document.querySelector("#rezultat").innerHTML = k1.kolicnik(k1.get_a(), k1.get_b());
+            if (sinus.checked) document.querySelector("#rezultat").innerHTML = k1.sin_a(k1.get_a());
+            if (cosin.checked) document.querySelector("#rezultat").innerHTML = k1.cos_a(k1.get_a());
+            if (tan.checked) document.querySelector("#rezultat").innerHTML = k1.tan_a(k1.get_a());
+            if (cel.checked) document.querySelector("#rezultat").innerHTML = k1.cel_a(k1.get_a());
+            if (stepen.checked) document.querySelector("#rezultat").innerHTML = k1.stepen_aB(k1.get_a(), k1.get_b());
+            if (koren.checked) document.querySelector("#rezultat").innerHTML = k1.koren_a(k1.get_a());
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Калкулатор</h1>
+    <div>
+        <div style="text-align:left; float:left">
+            <div>
+                <p> a <input id="a" style="width:15px" /> b <input id="b" style="width:15px" /></p>
+            </div>
+            <div>
+                <input id="plus" type="radio" name="oper"> a+b
+                <input id="minus" type="radio" name="oper" checked>a-b
+                <input id="mnoz" type="radio" name="oper">a*b
+                <input id="del" type="radio" name="oper">a/b
+                <br>
+                <input id="sin" type="radio" name="oper">sin(a)
+                <input id="cos" type="radio" name="oper">cos(a)
+                <input id="tg" type="radio" name="oper">tg(a)
+                <br>
+                <input id="cel" type="radio" name="oper">[a]
+                <input id="stepen" type="radio" name="oper">a<sup>b</sup>
+                <input id="koren" type="radio" name="oper">&radic;<span style="text-decoration:overline">a</span>
+            </div>
+            <div>
+                <button id="presmetaj">Пресметај</button>
+            </div>
+            <p id="rezultat"></p>
+        </div>
+    </div>
+    <br />
+</body>
+
+</html>

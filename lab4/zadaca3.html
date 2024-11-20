@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Zadaca 3</title>
+    <style>
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            width: 450px;
+            padding: 1rem;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Промена на позадина</h1>
+    <div>
+         <input type="radio" id="color" name="type" checked>
+        <label for="color" >Color</label>
+        <input type="radio" id="image" name="type">
+        <label for="image">Image</label>
+    </div>
+    <div  id="colorContainer">
+        <label for="inputColorNameOrCode"></label>
+        <input type="text" id="inputColorNameOrCode" placeholder="Color name or code">
+    </div>
+    <div id="imageContainer" class="hide">
+        <label for="inputImageUrl"></label>
+        <input id="inputImageUrl" type="text" placeholder="Image Url">
+    </div>
+    <button id="change">Промени</button>
+</div>
+<script>
+    let btnChange = document.querySelector("#change");
+    let colorContainer =document.getElementById("colorContainer");
+    let imageContainer = document.getElementById("imageContainer");
+
+    let radios = document.querySelectorAll("input[name='type']");
+    let c = document.querySelector(".container");
+    radios.forEach(radioBtn =>{
+        if(radioBtn.checked){
+
+        }
+        radioBtn.addEventListener("change",changeRadio);
+    })
+
+    function changeRadio(event){
+
+        if(this.id === 'color'){
+            //for color
+            document.getElementById("inputImageUrl").value = "";
+            colorContainer.classList.remove("hide");
+            imageContainer.classList.add('hide')
+            c.backgroundImage = "";
+            btnChange.onclick = function (){
+                let colorInput = document.getElementById("inputColorNameOrCode").value;
+                c.style.backgroundColor = `${colorInput}`;
+                console.log()
+            }
+
+
+        }
+        if(this.id === 'image'){
+            //for image
+            colorContainer.classList.add("hide");
+            imageContainer.classList.remove('hide');
+            //https://cdn.thinglink.me/api/image/655498865562091522/1024/10/scaletowidth/0/0/1/1/false/true?wait=true
+            btnChange.onclick = function (){
+                let imageInputUrl = document.getElementById("inputImageUrl").value;
+
+                console.log(imageInputUrl)
+                c.style.background = `url(${imageInputUrl})`;
+                c.style.backgroundSize = 'cover';
+                console.log(c)
+                imageInputUrl.value = ''
+            }
+
+        }
+    }
+
+
+</script>
+</body>
+</html>

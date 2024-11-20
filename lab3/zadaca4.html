@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadaca 4</title>
+    <script>
+        let BOOKS = [
+            {
+                "bookId": 1,
+                "title": "Clean Code",
+                "author": "Rober.C Martin",
+                "alreadyRead": false,
+            },
+            {
+                "bookId": 2,
+                "title": "The Pragmatic Programmer",
+                "author": "Dave Thomas & Andy Hunt",
+                "alreadyRead": false,
+            },
+            {
+                "bookId": 3,
+                "title": "How to win friends and influence people",
+                "author": "Dale Carnegie",
+                "alreadyRead": true,
+            },
+            {
+                "bookId": 4,
+                "title": "Meditations",
+                "author": "Marcus Aurelius",
+                "alreadyRead": false,
+            }
+        ]
+        window.addEventListener("load", (e) => {
+            BOOKS.forEach(book => {
+                if (book.alreadyRead) {
+                    console.log(`'You already read "${book.title}" by ${book.author}'`);
+                }
+                else {
+                    console.log(`'You still need to read "${book.title}" by ${book.author}'`);
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

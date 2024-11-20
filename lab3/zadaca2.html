@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="#">
+    <title>Zadaca 2</title>
+    <script>
+        "use strict";
+        window.addEventListener("load", (e) => {
+            remove_array_element([2, 5, 9, 6], 5); // 2,9,6
+            remove_array_element(['a', 'b', 'e', 'e'], 'e'); // 2,9,6
+            remove_array_element(['nasa', 'asan', 'sana', 'gana', 'mana', 'asan'], 'asan'); // 2,9,6
+        })
+        function remove_array_element(array, n) {
+            console.log(array);
+            let u = [];
+            for (let i = 0; i < array.length; i++) {
+                let el = array[i];
+                //console.log(el + '-' + n);
+                if (el !== n) {
+                    u.push(el);
+                }
+            }
+            console.log(u);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

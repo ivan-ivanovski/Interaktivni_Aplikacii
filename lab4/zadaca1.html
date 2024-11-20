@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Внесување на оцени</title>
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
+        .form{
+            display: block;
+            width: 50%;
+
+        }
+        .form-field{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: .5rem;
+            align-items: center;
+        }
+        label{
+            width: 20%;
+        }
+        input{
+            width: 70%;
+            padding: .3rem;
+
+        }
+        select{
+            width: 74%;
+            padding: .3rem;
+        }
+        .btn{
+            padding: .3rem .8rem;
+            cursor: pointer;
+        }
+        .tbl{
+            border: 2px solid black;
+        }
+        .tblHead tr th{
+            border: 2px solid black;
+        }
+        .tblBody tr td{
+            border: 2px solid black;
+        }
+    </style>
+    <script type="text/javascript">
+        let podatoci = [];
+        window.onload = function (){
+            let btnVnesiPodatoci = document.getElementById("btnVnesiPodatoci");
+            btnVnesiPodatoci.onclick = vnesiPodatoci;
+        }
+        function vnesiPodatoci(){
+            let ime = document.getElementById("ime").value;
+            let prezime = document.getElementById("prezime").value;
+            let index = document.getElementById("index").value;
+            let predmet = document.getElementById("predmet").value;
+            let ocena = document.getElementById("oceni").options[document.getElementById("oceni").selectedIndex].text;
+
+            let student = {
+                "ime": ime,
+                "prezime":prezime,
+                "index" : index,
+                "predmet":predmet,
+                'ocena' : ocena,
+            };
+
+            if(!podatoci.some(s => s.index === student.index) && ime !== "" && prezime !== "" && index !== "" && predmet !== "" && ocena !== "") {
+                podatoci.push(student);
+                vnesiVoTabela(student);
+            }
+            else{
+                alert("Полиња за внес на податици се задолжителни или веќе постои студент со ист индех и веќе е внесен во табела");
+            }
+            console.log(JSON.stringify(podatoci));
+            
+        }
+        function vnesiVoTabela(student){
+            console.log(podatoci);
+            let tbl = document.getElementById("podatociBody");
+            tbl.innerHTML += `<tr><td>${student.ime}</td><td>${student.prezime}</td><td>${student.index}</td><td>${student.predmet}</td><td>${student.ocena}</td></tr>`
+        }
+
+    </script>
+</head>
+<body>
+    <h1>Форма за внесување на оцени</h1>
+    <div class="form" id="form">
+        <div class="form-field">
+            <label for="ime">Име: </label>
+            <input type="text" id="ime" name="ime">
+        </div>
+
+        <div class="form-field">
+            <label for="prezime">Презиме: </label>
+            <input type="text" id="prezime" name="prezime">
+        </div>
+
+        <div class="form-field">
+            <label for="index">Индех: </label>
+            <input type="text" id="index" name="index">
+        </div>
+        <div class="form-field">
+            <label for="predmet">Предмет: </label>
+            <input type="text" name="predmet" id="predmet">
+        </div>
+        <div class="form-field">
+            <label for="oceni">Оцена: </label>
+            <select id="oceni">
+                <option>5 (пет)</option>
+                <option>6 (шест)</option>
+                <option>7 (седум)</option>
+                <option>8 (осум)</option>
+                <option>9 (девет)</option>
+                <option>10 (десет)</option>
+            </select>
+        </div>
+        <div class="form-field">
+            <button id="btnVnesiPodatoci" class="btn">Внеси</button>
+        </div>
+    </div>
+    <div class="tbl">
+        <table id="tblPodatoci">
+            <thead id="podatociHead" class="tblHead">
+                <tr>
+                    <th>Име</th>
+                    <th>Презиме</th>
+                    <th>Индех</th>
+                    <th>Предмет</th>
+                    <th>Оцена</th>
+                </tr>
+            </thead>
+            <tbody id="podatociBody" class="tblBody">
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

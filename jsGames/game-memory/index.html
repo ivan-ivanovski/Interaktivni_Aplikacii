@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            gap: 1rem;
+        }
+
+        .scores {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+            width: 650px;
+            padding: .5rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+
+        .grid-game-board {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            width: 650px;
+            height: 500px;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card-image {
+            display: block;
+            width: 10%;
+            height: 128px;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+        }
+
+        p {
+            width: 650px;
+            font-size: 1.2rem;
+            text-align: justify;
+        }
+
+        .gameInfo p {
+            margin: .5rem;
+            color: palevioletred;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        .gameInfo p:nth-child(2) {
+            color: black;
+        }
+    </style>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <h1>Memory Game</h1>
+    <div class="gameInfo">
+        <p> Welcome to Memory Match, a fun and challenging game where you test your memory and speed. The game is based
+            on
+            matching pairs of cards with the same image.
+        </p>
+        <p>To play the game, you need to flip over two cards at a time. If the cards match, you <strong>score 100
+                points</strong> and the cards stay face up. If the cards do not match, they flip back over and your
+            error count <strong> increases by 1</strong>. You have <strong>120</strong> seconds to find all the matching
+            pairs. But be
+            careful, if you make
+            more than <strong>20</strong> errors, you lose the game.</p>
+        <p> Can you beat the clock and match all the cards? Good luck and have fun!</p>
+    </div>
+
+    <div class="scores">
+        <h2>Score: <span id="playerScore">00</span></h2>
+        <h2 id="timer"></h2>
+        <h2 id="errors">Errors: <span id="playerErrors">0</span></h2>
+        <!-- <h2>High score<span id="playerHighScore">00</span></h2> -->
+    </div>
+    <div class="grid-game-board" id="card-game-board">
+
+    </div>
+</body>
+
+</html>
